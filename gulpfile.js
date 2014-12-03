@@ -9,11 +9,16 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('styles', function () {
-    console.log('runs styles');
+    gulp.src('sass/**/*.sass')
+        .pipe(sass({
+            style: 'compressed'
+        }))
+        .pipe(gulp.dest('css'));
 });
 
 gulp.task('watch', function () {
     gulp.watch('js/*.js', ['scripts']);
+    gulp.watch('sass/**/*.sass', ['styles']);
 });
 
 gulp.task('default', ['scripts', 'styles', 'watch']);
