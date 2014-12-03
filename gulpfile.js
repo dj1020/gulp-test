@@ -1,6 +1,7 @@
 var gulp   = require('gulp');
 var uglify = require('gulp-uglify');
 var sass   = require('gulp-ruby-sass');
+var livereload   = require('gulp-livereload');
 
 function errroLog (error) {
     console.error.bind(error);
@@ -19,10 +20,12 @@ gulp.task('styles', function () {
             style: 'compressed'
         }))
         .on('error', errroLog)
-        .pipe(gulp.dest('css'));
+        .pipe(gulp.dest('css'))
+        .pipe(livereload());
 });
 
 gulp.task('watch', function () {
+    var server = livereload(); // start a livereload server
     gulp.watch('js/*.js', ['scripts']);
     gulp.watch('sass/**/*.sass', ['styles']);
 });
