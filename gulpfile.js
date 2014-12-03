@@ -1,5 +1,6 @@
-var gulp = require('gulp');
+var gulp   = require('gulp');
 var uglify = require('gulp-uglify');
+var sass   = require('gulp-ruby-sass');
 
 gulp.task('scripts', function () {
     gulp.src('js/*')
@@ -15,5 +16,5 @@ gulp.task('watch', function () {
     gulp.watch('js/*.js', ['scripts']);
 });
 
-gulp.task('default', ['scripts', 'styles']);
+gulp.task('default', ['scripts', 'styles', 'watch']);
 
