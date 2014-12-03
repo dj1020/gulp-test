@@ -2,6 +2,11 @@ var gulp   = require('gulp');
 var uglify = require('gulp-uglify');
 var sass   = require('gulp-ruby-sass');
 
+function errroLog (error) {
+    console.error.bind(error);
+    this.emit('end');
+}
+
 gulp.task('scripts', function () {
     gulp.src('js/*')
         .pipe(uglify())
@@ -13,7 +18,7 @@ gulp.task('styles', function () {
         .pipe(sass({
             style: 'compressed'
         }))
-        .on('error', console.error.bind(console))
+        .on('error', errroLog)
         .pipe(gulp.dest('css'));
 });
 
