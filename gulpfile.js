@@ -2,13 +2,20 @@ var gulp = require('gulp');
 var sass = require('gulp-ruby-sass');
 var coffee = require('gulp-coffee');
 var uglify = require('gulp-uglify');
+var jade   = require('gulp-jade');
+
+var paths = {
+    styles: "sass/**/*.sass",
+    scripts: "coffee/**/*.coffee",
+    jade: "jade/**/*.jade"
+};
 
 gulp.task('test', function () {
     console.log("TEST gulp");
 });
 
 gulp.task('styles', function () {
-    gulp.src("sass/**/*.sass")
+    gulp.src(paths.styles)
         .pipe(sass({
             style: 'compressed'
         }))
@@ -16,15 +23,25 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', function () {
-    gulp.src("coffee/**/*.coffee")
+    gulp.src(paths.scripts)
         .pipe(coffee())
         // .pipe(uglify())
         .pipe(gulp.dest("js"));
 });
 
-gulp.task('watch', function() {
-    gulp.watch('coffee/**/*.coffee', ['scripts']);
-    gulp.watch('sass/**/*.sass', ['styles']);
+gulp.task('jade', function () {
+    gulp.src(paths.jade)
+        .pipe(jade({
+            pretty: true
+        }))
+        // .pipe(uglify())
+        .pipe(gulp.dest("./"));
 });
 
-gulp.task('default', ['styles', 'scripts', 'watch']);
+gulp.task('watch', function() {
+    gulp.watch(paths.scripts, ['scripts']);
+    gulp.watch(paths.styles, ['styles']);
+    gulp.watch(paths.jade, ['jade']);
+});
+
+gulp.task('default', ['styles', 'scripts', 'jade', 'watch']);
