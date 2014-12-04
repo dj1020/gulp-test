@@ -2,20 +2,24 @@
 1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'install',
-1 verbose cli   '--save-dev' ]
+1 verbose cli   '--save-dev',
+1 verbose cli   'gulp-plumber' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.32
 4 verbose node symlink C:\Program Files\nodejs\\node.exe
-5 error install Couldn't read dependencies
-6 error package.json ENOENT, open 'D:\wamp\www\gulp-test\package.json'
-6 error package.json This is most likely not a problem with npm itself.
-6 error package.json npm can't find a package.json file in your current directory.
-7 error System Windows_NT 6.1.7601
-8 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "--save-dev"
-9 error cwd D:\wamp\www\gulp-test
-10 error node -v v0.10.32
-11 error npm -v 1.4.28
-12 error path D:\wamp\www\gulp-test\package.json
-13 error code ENOPACKAGEJSON
-14 error errno 34
-15 verbose exit [ 34, true ]
+5 error Failed to parse json
+5 error Unexpected string
+6 error File: D:\wamp\www\gulp-test\package.json
+7 error Failed to parse package.json data.
+7 error package.json must be actual JSON, not just JavaScript.
+7 error
+7 error This is not a bug in npm.
+7 error Tell the package author to fix their package.json file. JSON.parse
+8 error System Windows_NT 6.1.7601
+9 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "--save-dev" "gulp-plumber"
+10 error cwd D:\wamp\www\gulp-test
+11 error node -v v0.10.32
+12 error npm -v 1.4.28
+13 error file D:\wamp\www\gulp-test\package.json
+14 error code EJSONPARSE
+15 verbose exit [ 1, true ]

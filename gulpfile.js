@@ -9,7 +9,7 @@ var jade          = require('gulp-jade');
 // var minifyHTML = require('gulp-minify-html');
 
 var paths = {
-    styles: "sass/**/*.sass",
+    styles: "sass/**/*.s?ss",
     scripts: "coffee/**/*.coffee",
     jade: "jade/**/*.jade"
 };
