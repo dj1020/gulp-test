@@ -1,8 +1,10 @@
 var gulp = require('gulp');
 var sass = require('gulp-ruby-sass');
+var cssmin = require('gulp-cssmin');
 var coffee = require('gulp-coffee');
 var uglify = require('gulp-uglify');
 var jade   = require('gulp-jade');
+var minifyHTML = require('gulp-minify-html');
 
 var paths = {
     styles: "sass/**/*.sass",
@@ -19,13 +21,14 @@ gulp.task('styles', function () {
         .pipe(sass({
             style: 'compressed'
         }))
+        .pipe(cssmin({keepSpecialComments: 0}))
         .pipe(gulp.dest("css"));
 });
 
 gulp.task('scripts', function () {
     gulp.src(paths.scripts)
         .pipe(coffee())
-        // .pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest("js"));
 });
 
@@ -34,7 +37,7 @@ gulp.task('jade', function () {
         .pipe(jade({
             pretty: true
         }))
-        // .pipe(uglify())
+        .pipe(minifyHTML())
         .pipe(gulp.dest("./"));
 });
 
