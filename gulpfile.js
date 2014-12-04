@@ -1,5 +1,6 @@
 var gulp          = require('gulp');
 var connect       = require('gulp-connect');
+var plumber       = require('gulp-plumber');
 var sass          = require('gulp-ruby-sass');
 // var cssmin     = require('gulp-cssmin');
 var coffee        = require('gulp-coffee');
@@ -25,6 +26,7 @@ gulp.task('webserver', function () {
 
 gulp.task('styles', function () {
     gulp.src(paths.styles)
+        .pipe(plumber())
         .pipe(sass({
             // style: 'compressed'
         }))
@@ -35,18 +37,22 @@ gulp.task('styles', function () {
 
 gulp.task('scripts', function () {
     gulp.src(paths.scripts)
+        .pipe(plumber())
         .pipe(coffee())
         // .pipe(uglify())
-        .pipe(gulp.dest("js"));
+        .pipe(gulp.dest("js"))
+        .pipe(connect.reload());
 });
 
 gulp.task('jade', function () {
     gulp.src(paths.jade)
+        .pipe(plumber())
         .pipe(jade({
             pretty: true
         }))
         // .pipe(minifyHTML())
-        .pipe(gulp.dest("./"));
+        .pipe(gulp.dest("./"))
+        .pipe(connect.reload());
 });
 
 gulp.task('watch', function() {
